@@ -1,0 +1,57 @@
+--[[
+
+  Instalador de programa Versão 1.0
+  Por: WB
+  
+--]]
+
+parametro = {...}
+
+--[[
+lado = {
+  "front", "back",
+  "left", "right",
+  "top", "bottom",
+}
+--]]
+
+lado = {}
+
+peripheral.find("drive", function(nome, metodo) table.insert(lado, nome) end)
+
+ct, lt = term.getSize()
+
+if #parametro == 1 then
+  arquivo = parametro[1]
+else
+  print("Uso: instalar <arquivo>")
+  return
+end
+
+if #lado == 0 then
+  print("Drive de disco nao encontrado")
+  return
+end
+
+if not fs.exists("/disk") then
+  print("Disquete nao encontrado")
+  return
+end
+
+if not fs.exists("/disk/"..arquivo) then
+  print("Arquivo "..arquivo.." nao encontrado")
+  return
+end
+
+if fs.exists("/"..arquivo) then
+  fs.delete("/"..arquivo)
+end
+fs.copy("/disk/"..arquivo, "/"..arquivo)
+
+term.clear()
+term.setCursorPos(1, 1)
+print("Programa instalado com sucesso!")
+term.setCursorPos(1, lt)
+textutils.slowWrite("Reiniciando...")
+sleep(0.4)
+os.reboot()
