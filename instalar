@@ -1,19 +1,11 @@
 --[[
 
-  Instalador de programa Vers„o 1.0
-  Por: WB
+  Instalador de programa Vers√£o 1.0
+  Por: While_Br
   
 --]]
 
 parametro = {...}
-
---[[
-lado = {
-  "front", "back",
-  "left", "right",
-  "top", "bottom",
-}
---]]
 
 lado = {}
 
